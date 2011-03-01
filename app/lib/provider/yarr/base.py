@@ -129,11 +129,7 @@ class nzbBase(rss):
         # Use any of the required words instead off all required words
         anyRequiredWords = get_words(self.config.get('global', 'anyRequiredWords'))
         requiredWordFound = set(anyRequiredWords).intersection(set(nzbWords))
-        if requiredWordFound:
-            log.info("NZB '%s' contains the following required word: %s" %
-                            (item.name, ", ".join(requiredWordFound)))
-            return True
-        else:
+        if not requiredWordFound:
             log.info("NZB '%s' contains none of the following required words: %s" %
                             (item.name, ", ".join(anyRequiredWords)))
             return False
